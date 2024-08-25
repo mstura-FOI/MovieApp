@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<Shell
+    x:Class="MovieApp.AppShell"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:local="clr-namespace:MovieApp"
+    Shell.FlyoutBehavior="Flyout"
+    FlyoutHeaderBehavior="CollapseOnScroll"
+    Title="MovieApp">
+
+    <FlyoutItem FlyoutDisplayOptions="AsMultipleItems">
+        <ShellContent
+            Icon="search.png"
+            FlyoutIcon="search.png"
+            Title="Search for movies"
+            ContentTemplate="{DataTemplate local:SearchPageViewModel}" />
+        <ShellContent
+            Icon="trending.png"
+            FlyoutIcon="trending.png"
+            Title="Trending"
+            ContentTemplate="{DataTemplate local:TrendingViewModel}" />
+        <ShellContent
+                Icon="top_rated.png"
+                FlyoutIcon="top_rated.png"
+                Title="Top rated"
+                ContentTemplate="{DataTemplate local:TopRatedViewModel}" />
+        <ShellContent
+            Icon="favorite.png"
+            FlyoutIcon="favorite.png"
+            Title="My favourites"
+            ContentTemplate="{DataTemplate local:FavouritesViewModel}" />
+        
+    </FlyoutItem>
+
+</Shell>

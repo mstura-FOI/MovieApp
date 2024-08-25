@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="MovieApp.FavouritesViewModel"
+             Title="Favourites"
+             xmlns:xm="clr-namespace:AlohaKit.Controls;assembly=AlohaKit"
+            >
+    
+    <ScrollView >
+
+        <VerticalStackLayout>
+            <xm:BusyIndicator xm:IsEnabled="True" x:Name="busy"/>
+            <CarouselView x:Name="movie_search" IndicatorView="indicatorView" CurrentItemChanged="movie_search_CurrentItemChanged">
+                    <CarouselView.ItemTemplate>
+                        <DataTemplate>
+
+                        <Grid Opacity="1">
+
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                            </Grid.RowDefinitions>
+                            <Frame HorizontalOptions="Center"
+                                   Padding="0"
+                                   Margin="0,0,0,0"
+                                    BorderColor="White">
+                                <Image  Source="{Binding Backdrop_Path}" Aspect="AspectFill" Loaded="Image_Loaded">
+                                    <Image.Opacity>
+                                        <OnPlatform x:TypeArguments="x:Double">
+                                            <On Platform="Android" Value="0.7"></On>
+                                            <On Platform="WinUI" Value="0.3"></On>
+                                        </OnPlatform>
+                                    </Image.Opacity>
+                                </Image>
+                            </Frame>
+                            <VerticalStackLayout>
+
+                                <Image  Source="{Binding Poster_Path}" HeightRequest="500" WidthRequest="500" 
+                                                Grid.Row="0" Margin="10,20" />
+
+                              
+
+                            </VerticalStackLayout>
+                            <Label Text="{Binding Original_Title}" 
+                                        FontAttributes="Bold" FontSize="48" 
+                                        HorizontalOptions="Center"
+                                        Grid.Row="1"   Margin="10,0,0,10"/>
+                          
+                            
+                            <Label  Text="{Binding Overview}" 
+                                    Grid.Row="3"
+                                    FontAttributes="None" FontSize="18" 
+                                    HorizontalOptions="Center"
+                                    HorizontalTextAlignment="Center"
+                                    Margin="20"/>
+                            
+                            <Frame CornerRadius="30"
+                                   HorizontalOptions="Center"
+                                    VerticalOptions="Start"
+                                    HasShadow="True"
+                                    IsClippedToBounds="True"
+                                    Padding="0"  BackgroundColor="Black" Margin="5" Grid.Row="4">
+                                <StackLayout  HorizontalOptions="Center" Orientation="Horizontal" Margin="10">
+                                    <Image Source="calendar.png" HeightRequest="32"/>
+
+                                    <Label Text="Release Date:"  TextColor="White" FontSize="Large" Margin="5"/>
+                                    <Label Text="{Binding Release_Date}" TextColor="White" FontSize="Large" Margin="5"/>
+                                </StackLayout>
+                            </Frame>
+                           
+                            <Frame CornerRadius="30"
+    
+                                   HorizontalOptions="Center"
+                                     VerticalOptions="Center"
+                                 HasShadow="True"
+                                        IsClippedToBounds="True"
+                                            Padding="20" Grid.Row="5" BackgroundColor="Black" Margin="10" >
+                                <StackLayout  Orientation="Vertical" HorizontalOptions="Center">
+                                    <HorizontalStackLayout >
+                                        <Image Source="fire.png" HeightRequest="32"/>
+
+
+                                        <Label TextColor="White" Text="  Rating: " FontAttributes="Bold" FontSize="Large"/>
+                                        <Label TextColor="White" Text="{Binding Vote_Average}"  FontSize="Large"/>
+                                    </HorizontalStackLayout>
+                                    <HorizontalStackLayout>
+                                        <Image Source="grade.png" HeightRequest="32"/>
+
+                                        <Label TextColor="White" Text="  Votes: " FontAttributes="Bold"  FontSize="Large"/>
+                                        <Label  TextColor="White" Text="{Binding Vote_Count}" FontSize="Large"/>
+                                    </HorizontalStackLayout>
+                                    <HorizontalStackLayout>
+                                        <Image Source="diversity.png" HeightRequest="32"/>
+
+                                        <Label TextColor="White" Text="  Popularity: " FontAttributes="Bold"  FontSize="Large"/>
+                                        <Label  TextColor="White" Text="{Binding Popularity}" FontSize="Large"/>
+
+                                    </HorizontalStackLayout>
+                                    <HorizontalStackLayout>
+                                        <Image Source="money.png" HeightRequest="32"/>
+
+                                        <Label TextColor="White" Text="  Budget: " FontAttributes="Bold"  FontSize="Large"/>
+                                        <Label  TextColor="White" Text="{Binding Budget}" FontSize="Large"/>
+
+                                    </HorizontalStackLayout>
+                                    <HorizontalStackLayout>
+                                        <Image Source="income.png" HeightRequest="32"/>
+
+                                        <Label TextColor="White" Text="  Revenue: " FontAttributes="Bold"  FontSize="Large"/>
+                                        <Label  TextColor="White" Text="{Binding Revenue}" FontSize="Large"/>
+
+                                    </HorizontalStackLayout>
+                                    <HorizontalStackLayout>
+                                        <Image Source="time.png" HeightRequest="32"/>
+
+                                        <Label TextColor="White" Text="  Runtime: " FontAttributes="Bold"  FontSize="Large"/>
+                                        <Label  TextColor="White" Text="{Binding Runtime}" FontSize="Large"/>
+                                        <Label  TextColor="White" Text=" Minutes" FontSize="Large"/>
+
+                                    </HorizontalStackLayout>
+                                    <xm:Rating x:Name="rating" Value="{Binding Rating}" Margin="20"></xm:Rating>
+                                </StackLayout>
+                            </Frame>
+                        </Grid>
+                    </DataTemplate>
+                    </CarouselView.ItemTemplate>     
+                </CarouselView>
+           
+            <IndicatorView x:Name="indicatorView"
+                   Margin="0,-40,0,20"
+                   AbsoluteLayout.LayoutFlags="PositionProportional"
+                    AbsoluteLayout.LayoutBounds="0,0,100,100" 
+                   IndicatorColor="DarkGray"
+                   SelectedIndicatorColor="White"
+                   HorizontalOptions="Center" />
+                               
+        </VerticalStackLayout> 
+    </ScrollView>
+</ContentPage>

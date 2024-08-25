@@ -1,0 +1,47 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="MovieApp.SearchPageViewModel"
+             xmlns:vm="clr-namespace:MovieDB.DB_Tables;assembly=MovieDB"
+            
+             x:DataType="vm:Movie">
+                   
+    <ScrollView>
+
+        <VerticalStackLayout>
+            
+            <Label Text="Search for your favourite movies and learn everything about them" Padding="10" HorizontalOptions="Center"/>
+            <SearchBar x:Name="search_bar" TextChanged="search_bar_TextChanged" Margin="30"/>
+            <ListView x:Name="movie_search" ItemTapped="Movie_Selected_handler" HasUnevenRows="true">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell >
+                            <Grid>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition  Height="Auto" />
+                                    <RowDefinition Height="Auto"  />
+                                    <RowDefinition Height="Auto" />
+                                </Grid.RowDefinitions>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition />
+                                    <ColumnDefinition />
+                                </Grid.ColumnDefinitions>
+                                <Image  Source="{Binding Poster_Path}" Grid.Row="0" Grid.RowSpan="4" Grid.Column="0" Aspect="AspectFit"/>
+                                <Label FontSize="{OnPlatform iOS=18, Android=18, WinUI=96}" HorizontalTextAlignment="Center"  Text="{Binding Original_Title}" Margin="{OnPlatform iOS=10, Android=10, WinUI=30}" FontAttributes="Bold"  Grid.Row="0" Grid.Column="1"/>
+                                <Label FormattedText="{Binding Overview}" FontSize="{OnPlatform iOS=14, Android=14, WinUI=36}" Grid.Row="1" Grid.Column="1" Margin="{OnPlatform iOS=10, Android=10, WinUI=30}"/>
+                                <HorizontalStackLayout  Grid.Row="2" Grid.Column="1" VerticalOptions="Center" Margin="20,5">
+                                    <Image Source="grade.png" Margin="{OnPlatform iOS=5, Android=5, WinUI=30}" HeightRequest="{OnPlatform iOS=18, Android=18, WinUI=48}"/>
+                                    <Label VerticalOptions="Center" FontSize="{OnPlatform iOS=12, Android=12, WinUI=36}" Text="{Binding Vote_Average}"/>
+                                    <Image Margin="{OnPlatform iOS=5, Android=5, WinUI=30}" Source="time.png" HeightRequest="{OnPlatform iOS=12, Android=12, WinUI=48}"/>
+                                    <Label VerticalOptions="Center" FontSize="{OnPlatform iOS=12, Android=12, WinUI=36}" Text="{Binding Release_Date}"/>
+                                </HorizontalStackLayout>
+                            </Grid>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+        </VerticalStackLayout>                                                                                             
+    </ScrollView>
+
+</ContentPage>
